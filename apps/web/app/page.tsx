@@ -31,7 +31,7 @@ export default function HomePage() {
               Open Hub
             </Link>
             <code className="rounded border border-white/10 bg-black/40 px-4 py-2 text-sm text-neon-cyan">
-              curl -fsSL /install.sh | bash
+              curl -fsSL ./install.sh | bash
             </code>
           </div>
         </div>

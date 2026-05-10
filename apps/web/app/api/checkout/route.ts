@@ -3,10 +3,10 @@ import Stripe from "stripe";
 import { requireUser } from "@/lib/auth";
 import { createSupabaseAdmin } from "@/lib/supabaseAdmin";
 
-export async function POST() {
+export async function POST(request: Request) {
   const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
   const priceId = process.env.STRIPE_PRO_PRICE_ID;
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? new URL(request.url).origin;
 
   if (!stripeSecretKey || !priceId) {
     return NextResponse.json(

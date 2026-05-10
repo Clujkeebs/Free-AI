@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import { headers } from "next/headers";
 import { CheckoutButton } from "@/components/CheckoutButton";
 import { ProviderKeyForm } from "@/components/ProviderKeyForm";
 import { SettingsForm } from "@/components/SettingsForm";
@@ -27,7 +28,10 @@ export default async function DashboardPage() {
     redirect("/login");
   }
 
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://neonforge.app";
+  const requestHeaders = await headers();
+  const host = requestHeaders.get("host") ?? "localhost:3000";
+  const protocol = host.startsWith("localhost") ? "http" : "https";
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? `${protocol}://${host}`;
   const installCommand = `curl -fsSL ${appUrl}/install.sh | bash`;
   const initCommand = `neonforge init --hub ${appUrl} --license ${license.key}`;
 

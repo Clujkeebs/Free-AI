@@ -1,4 +1,5 @@
-export async function GET() {
+export async function GET(request: Request) {
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? new URL(request.url).origin;
   const script = `#!/usr/bin/env bash
 set -euo pipefail
 
@@ -16,7 +17,7 @@ npm install -g @neonforge/cli
 
 echo
 echo "NeonForge installed."
-echo "Run: neonforge init --hub https://neonforge.app --license YOUR_NEONKEY"
+echo "Run: neonforge init --hub ${appUrl} --license YOUR_NEONKEY"
 `;
 
   return new Response(script, {
