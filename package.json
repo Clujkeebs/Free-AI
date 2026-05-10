@@ -1,0 +1,29 @@
+{
+  "name": "neonforge",
+  "version": "0.1.0",
+  "private": true,
+  "description": "NeonForge AI coding ecosystem: local-first CLI agent and SaaS management hub.",
+  "packageManager": "npm@10.8.2",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "typecheck": "turbo typecheck",
+    "cli": "npm --workspace @neonforge/cli run dev",
+    "web": "npm --workspace @neonforge/web run dev"
+  },
+  "devDependencies": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "turbo": "^2.5.0",
+    "typescript": "^5.8.0"
+  },
+  "overrides": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  }
+}
